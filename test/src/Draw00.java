@@ -22,6 +22,9 @@ public class Draw00 extends JFrame{
             g.drawLine(10, 30, 100, 200);      
             g.setColor(Color.GREEN);      
             g.fillRect(300, 50, 200, 200);
+            g.fillRect(300, 50, 200, 200);
+            g.fillRect(300, 50, 200, 200);
+
         }
     }
         public static void main(String[] args) {
