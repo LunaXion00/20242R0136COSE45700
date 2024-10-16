@@ -1,10 +1,9 @@
 package test.src.model;
-
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
 
-public class RectangleObject extends ShapeObject{
-    public RectangleObject(Point position, int width, int height, Color fillColor, Color strokeColor) {
+public class EclipseObject extends ShapeObject{
+    public EclipseObject(Point position, int width, int height, Color fillColor, Color strokeColor) {
         super(position, width, height, fillColor, strokeColor);
     }
 

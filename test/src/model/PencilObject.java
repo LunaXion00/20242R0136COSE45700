@@ -1,13 +1,14 @@
 package test.src.model;
+
 import java.awt.*;
 import java.awt.geom.Path2D;
 
-public class PencilObject extends ShapeObject {
+public class PencilObject extends ShapeObject{
     private Path2D path;
 
     // 연필 도구의 초기화 - 시작점을 받아서 Path2D 객체를 생성
-    public PencilObject(Point startPoint, Color strokeColor) {
-        super(startPoint, 0, 0, null, strokeColor);
+    public PencilObject(Point startPoint, Color fillColor, Color strokeColor) {
+        super(startPoint, 0, 0, fillColor, strokeColor);
         path = new Path2D.Double();
         path.moveTo(startPoint.x, startPoint.y);
     }
