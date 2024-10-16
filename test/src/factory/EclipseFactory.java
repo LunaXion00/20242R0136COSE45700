@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class EclipseFactory implements ShapeFactory{
     @Override
-    public ShapeObject createShape(Point startPoint, Color strokeColor) {
-        return new EclipseObject(startPoint, 0, 0, null, strokeColor);
+    public ShapeObject createShape(Point startPoint, Color fillColor, Color strokeColor) {
+        return new EclipseObject(startPoint, 0, 0, fillColor, strokeColor);
     }
 }

@@ -7,7 +7,7 @@ import java.awt.*;
 
 public abstract class PencilFactory implements ShapeFactory{
     @Override
-    public ShapeObject createShape(Point startPoint, Color strokeColor){
-        return new PencilObject(startPoint, strokeColor);
+    public ShapeObject createShape(Point startPoint, Color fillColor, Color strokeColor){
+        return new PencilObject(startPoint, fillColor, strokeColor);
     }
 }
