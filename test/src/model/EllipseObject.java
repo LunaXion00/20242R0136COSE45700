@@ -1,15 +1,16 @@
 package test.src.model;
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
+import java.awt.geom.Ellipse2D;
 
-public class EclipseObject extends ShapeObject{
-    public EclipseObject(Point position, int width, int height, Color fillColor, Color strokeColor) {
+public class EllipseObject extends ShapeObject{
+    public EllipseObject(Point position, int width, int height, Color fillColor, Color strokeColor) {
         super(position, width, height, fillColor, strokeColor);
     }
 
     @Override
     public Shape getShape() {
-        return new Rectangle2D.Double(position.x, position.y, width, height);
+        return new Ellipse2D.Double(position.x, position.y, width, height) {
+        };
     }
     @Override
     public void draw(Graphics2D g2d) {

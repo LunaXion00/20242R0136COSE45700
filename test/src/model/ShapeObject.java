@@ -29,6 +29,5 @@ public abstract class ShapeObject {
     public void setFillColor(Color fillColor) { this.fillColor = fillColor; }
     public void setStrokeColor(Color strokeColor) { this.strokeColor = strokeColor; }
 
-    // 연필 도구는 내부적으로 Path2D로 구성되므로 그릴 때는 Stroke만 필요
     public abstract void draw(Graphics2D g2d);
 }

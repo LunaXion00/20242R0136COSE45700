@@ -6,7 +6,7 @@ import java.awt.geom.Path2D;
 public class PencilObject extends ShapeObject{
     private Path2D path;
 
-    // 연필 도구의 초기화 - 시작점을 받아서 Path2D 객체를 생성
+    // Path2D 객체를 생성
     public PencilObject(Point startPoint, Color fillColor, Color strokeColor) {
         super(startPoint, 0, 0, fillColor, strokeColor);
         path = new Path2D.Double();
@@ -24,10 +24,15 @@ public class PencilObject extends ShapeObject{
         return path;
     }
 
-    // 연필 도구는 내부적으로 Path2D로 구성되므로 그릴 때는 Stroke만 필요
+    // 연필로 그린 경우에도 fillcolor가 존재하는 경우, 시작점과 끝점을 연결해 닫아준 뒤 내부 색칠.
     @Override
     public void draw(Graphics2D g2d) {
         g2d.setColor(strokeColor);
-        g2d.draw(path);
+        g2d.draw(path);  // 경로를 그리기
+
+        if (fillColor != null) {
+            g2d.setColor(fillColor);
+            g2d.fill(path);  // 내부 색칠
+        }
     }
 }
