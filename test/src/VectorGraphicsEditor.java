@@ -61,4 +61,4 @@ public class VectorGraphicsEditor extends JFrame {
             new VectorGraphicsEditor().setVisible(true);
         });
     }
-}a
+}
