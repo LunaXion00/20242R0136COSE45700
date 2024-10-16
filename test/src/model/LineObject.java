@@ -22,7 +22,7 @@ public class LineObject extends ShapeObject {
 
     @Override
     public Shape getShape() {
-        return line;
+        return this.line;
     }
 
     // 그리기 메서드
