@@ -2,12 +2,13 @@ package test.src.state;
 
 import test.src.model.RectangleObject;
 import test.src.model.ShapeModel;
+import test.src.model.ShapeObject;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class RectangleDraw implements DrawState{
-    private RectangleObject currentRectangle;
+    private ShapeObject currentRectangle;
     @Override
     public void mousePressed(MouseEvent e, ShapeModel model, Point startPoint) {
         // 마우스를 누르는 순간 점 상태의 사각형 객체 생성.

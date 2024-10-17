@@ -2,12 +2,18 @@ package test.src.state;
 
 import test.src.model.EllipseObject;
 import test.src.model.ShapeModel;
+import test.src.model.ShapeObject;
+import test.src.strategy.DrawStrategy;
+import test.src.strategy.FreeDrawStrategy;
+import test.src.strategy.RegularStrategy;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
 public class EllipseDraw implements DrawState{
-    private EllipseObject currentEllipse;
+    private ShapeObject currentEllipse;
+    private DrawStrategy freeDrawStrategy = new FreeDrawStrategy();
+    private DrawStrategy RegularDrawStrategy = new RegularStrategy();
     @Override
     public void mousePressed(MouseEvent e, ShapeModel model, Point startPoint) {
         currentEllipse = new EllipseObject(startPoint, 0, 0, Color.WHITE, Color.BLACK);
