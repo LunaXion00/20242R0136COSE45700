@@ -39,4 +39,10 @@ public class LineObject extends ShapeObject{
         g2d.setColor(strokeColor);
         g2d.draw(line);
     }
+    @Override
+    public void resize(int dx, int dy, int dw, int dh) {
+        position.translate(dx, dy);
+        endPoint.translate(dw, dh);
+        line.setLine(position, endPoint);
+    }
 }

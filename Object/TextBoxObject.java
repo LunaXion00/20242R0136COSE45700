@@ -91,4 +91,9 @@ public class TextBoxObject extends ShapeObject {
     public boolean isEditing() {
         return isEditing;
     }
+    @Override
+    public void resize(int dx, int dy, int dw, int dh) {
+        width += dw;
+        height += dh;
+    }
 }
