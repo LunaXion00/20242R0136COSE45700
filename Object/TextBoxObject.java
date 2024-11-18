@@ -1,9 +1,12 @@
 package Object;
 
+import Handle.ResizeHandle;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 public class TextBoxObject extends ShapeObject {
     private String text;
@@ -54,6 +57,16 @@ public class TextBoxObject extends ShapeObject {
     @Override
     public Shape getShape() {
         return null;
+    }
+
+    @Override
+    protected List<ResizeHandle> getResizeHandleList() {
+        return null;
+    }
+
+    @Override
+    public void setEndPoint(Point endPoint) {
+
     }
 
     @Override

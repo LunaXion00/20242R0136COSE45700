@@ -1,11 +1,28 @@
 package Object;
 
+import Handle.*;
+
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
+import java.util.List;
 
 public class EllipseObject extends ShapeObject{
+    @Override
+    public void setEndPoint(Point endPoint) {
+
+    }
+
     public EllipseObject(Point position, int width, int height, Color fillColor, Color strokeColor) {
         super(position, width, height, fillColor, strokeColor);
+    }
+
+    @Override
+    protected List<ResizeHandle> getResizeHandleList() {
+        return List.of(
+                new TopLeftHandle(this), new TopMidHandle(this), new TopRightHandle(this),
+                new MidLeftHandle(this), new MidRightHandle(this),
+                new BotLeftHandle(this), new BotMidHandle(this), new BotRightHandle(this)
+        );
     }
 
     @Override

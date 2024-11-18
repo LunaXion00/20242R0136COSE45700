@@ -1,11 +1,14 @@
 package Object;
 
+import Handle.ResizeHandle;
 import java.awt.*;
+import java.util.List;
 
 public abstract class ShapeObject {
     protected Point position;
     protected int width, height;
     protected Color fillColor, strokeColor;
+    protected List<ResizeHandle> resizeHandleList;
 
     public ShapeObject(Point position, int width, int height, Color fillColor, Color strokeColor) {
         this.position = position;
@@ -14,7 +17,7 @@ public abstract class ShapeObject {
         this.fillColor = fillColor;
         this.strokeColor = strokeColor;
     }
-
+    protected abstract List<ResizeHandle> getResizeHandleList();
     public void setwidth(int width) {
         if(width == 0) this.width = 1;
         else this.width = width;
@@ -29,6 +32,7 @@ public abstract class ShapeObject {
     public void setPosition(Point position) {
         this.position = position;
     }
+    public abstract void setEndPoint(Point endPoint);
 
     public Point getPosition() {
         int x = Math.min(position.x, position.x + width);
@@ -59,4 +63,6 @@ public abstract class ShapeObject {
         return getBounds().contains(point);
     }
     public abstract void draw(Graphics2D g2d);
+
+
 }

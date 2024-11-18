@@ -1,7 +1,10 @@
 package Object;
 
+import Handle.ResizeHandle;
+
 import java.awt.*;
 import java.awt.geom.Line2D;
+import java.util.List;
 
 public class LineObject extends ShapeObject{
     private Line2D line;
@@ -23,6 +26,13 @@ public class LineObject extends ShapeObject{
         int height= Math.abs(position.y-endPoint.y);
         return new Rectangle(x, y, width,height);
     }
+
+    @Override
+    protected List<ResizeHandle> getResizeHandleList() {
+        return null;
+    }
+
+    @Override
     public void setEndPoint(Point endPoint) {
         this.endPoint = endPoint;
         this.line.setLine(position, endPoint);

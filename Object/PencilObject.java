@@ -1,8 +1,11 @@
 package Object;
 
+import Handle.ResizeHandle;
+
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Path2D;
+import java.util.List;
 
 public class PencilObject extends ShapeObject{
     private Path2D path;
@@ -33,12 +36,23 @@ public class PencilObject extends ShapeObject{
         position.translate(dx, dy);
         path.transform(AffineTransform.getTranslateInstance(dx, dy));
     }
+
+    @Override
+    protected List<ResizeHandle> getResizeHandleList() {
+        return null;
+    }
+
     @Override
     public void setPosition(Point position) {
         int dx = position.x - this.position.x;
         int dy =  position.y - this.position.y;
         this.position = position;
         path.transform(AffineTransform.getTranslateInstance(dx, dy));
+    }
+
+    @Override
+    public void setEndPoint(Point endPoint) {
+
     }
 
     // 연필로 그린 경우에도 fillcolor가 존재하는 경우, 시작점과 끝점을 연결해 닫아준 뒤 내부 색칠.

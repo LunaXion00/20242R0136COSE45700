@@ -1,12 +1,25 @@
 package Object;
 
+import Handle.ResizeHandle;
+
 import java.awt.*;
 import java.awt.geom.Rectangle2D;
+import java.util.List;
 
 public class RectangleObject extends ShapeObject {
 
     public RectangleObject(Point position, int width, int height, Color fillColor, Color strokeColor) {
         super(position, width, height, fillColor, strokeColor);
+    }
+
+    @Override
+    protected List<ResizeHandle> getResizeHandleList() {
+        return null;
+    }
+
+    @Override
+    public void setEndPoint(Point endPoint) {
+
     }
 
     @Override
