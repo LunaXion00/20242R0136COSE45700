@@ -4,6 +4,9 @@ import java.awt.*;
 import Object.ShapeObject;
 
 public abstract class ResizeHandle {
-
-    public abstract void resize(ShapeObject shape, Point startPoint, Point endPoint);
+    ShapeObject shape;
+    public ResizeHandle(ShapeObject shape){
+        this.shape = shape;
+    }
+    public abstract void resize(Point startPoint, Point endPoint);
 }

@@ -4,8 +4,11 @@ import java.awt.*;
 import Object.ShapeObject;
 
 public class BotMidHandle extends ResizeHandle {
+    public BotMidHandle(ShapeObject shape) {
+        super(shape);
+    }
     @Override
-    public void resize(ShapeObject shape, Point startPoint, Point endPoint) {
+    public void resize(Point startPoint, Point endPoint) {
         int newWidth = shape.getWidth();
         int newHeight = Math.abs(shape.getHeight() + (endPoint.y - startPoint.y));
         int newX = shape.getPosition().x;
