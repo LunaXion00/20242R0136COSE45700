@@ -1,6 +1,6 @@
 package Object;
 
-import Handle.ResizeHandle;
+import Handle.*;
 
 import java.awt.*;
 import java.awt.geom.Line2D;
@@ -29,7 +29,9 @@ public class LineObject extends ShapeObject{
 
     @Override
     protected List<ResizeHandle> getResizeHandleList() {
-        return null;
+        return List.of(
+                new StartPointHandle(this), new EndPointHandle(this)
+        );
     }
 
     @Override

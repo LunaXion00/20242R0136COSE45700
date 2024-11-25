@@ -4,9 +4,22 @@ import java.awt.*;
 import Object.ShapeObject;
 
 public class BotMidHandle extends ResizeHandle {
+    private static final int HANDLE_SIZE = 4;
     public BotMidHandle(ShapeObject shape) {
         super(shape);
     }
+
+    @Override
+    public Rectangle getBounds() {
+        Rectangle bounds = shape.getBounds();
+        return new Rectangle(
+                bounds.x + bounds.width / 2 - HANDLE_SIZE / 2,
+                bounds.y + bounds.height - HANDLE_SIZE / 2,
+                HANDLE_SIZE,
+                HANDLE_SIZE
+        );
+    }
+
     @Override
     public void resize(Point startPoint, Point endPoint) {
         int newWidth = shape.getWidth();

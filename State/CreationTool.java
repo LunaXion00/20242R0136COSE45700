@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import Factory.ShapeFactory;
 import Object.ShapeObject;
 import model.ShapeModel;
+import Command.*;
 
 public class CreationTool implements Tool{
     private ShapeObject currentShape;
@@ -20,8 +21,10 @@ public class CreationTool implements Tool{
     }
     @Override
     public void HandleMousePress(MouseEvent e, ShapeModel model, Point startPoint) {
-        currentShape = factory.createShape(startPoint, fillColor, strokeColor);
-        model.addShape(currentShape);
+//        currentShape = factory.createShape(startPoint, fillColor, strokeColor);
+//        model.addShape(currentShape);
+        Command createCommand = new createCommand(model, factory, startPoint, fillColor, strokeColor);
+        createCommand.execute();
     }
 
     @Override

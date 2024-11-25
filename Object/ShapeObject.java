@@ -1,14 +1,15 @@
 package Object;
 
 import Handle.ResizeHandle;
+import Interface.Selectable;
+
 import java.awt.*;
 import java.util.List;
 
-public abstract class ShapeObject {
+public abstract class ShapeObject implements Selectable {
     protected Point position;
     protected int width, height;
     protected Color fillColor, strokeColor;
-    protected List<ResizeHandle> resizeHandleList;
 
     public ShapeObject(Point position, int width, int height, Color fillColor, Color strokeColor) {
         this.position = position;
@@ -17,7 +18,6 @@ public abstract class ShapeObject {
         this.fillColor = fillColor;
         this.strokeColor = strokeColor;
     }
-    protected abstract List<ResizeHandle> getResizeHandleList();
     public void setwidth(int width) {
         if(width == 0) this.width = 1;
         else this.width = width;
@@ -54,7 +54,9 @@ public abstract class ShapeObject {
     public int getHeight() {
         return Math.abs(height);
     }
-
+    public Point getEndPoint() {
+        return new Point(position.x + width, position.y + height);
+    }
     public void move(int dx, int dy) {
         position.translate(dx, dy);
     }

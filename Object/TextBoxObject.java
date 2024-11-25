@@ -1,6 +1,6 @@
 package Object;
 
-import Handle.ResizeHandle;
+import Handle.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -61,7 +61,11 @@ public class TextBoxObject extends ShapeObject {
 
     @Override
     protected List<ResizeHandle> getResizeHandleList() {
-        return null;
+        return List.of(
+                new TopLeftHandle(this), new TopMidHandle(this), new TopRightHandle(this),
+                new MidLeftHandle(this), new MidRightHandle(this),
+                new BotLeftHandle(this), new BotMidHandle(this), new BotRightHandle(this)
+        );
     }
 
     @Override

@@ -1,16 +1,21 @@
 package Command;
 
 import Factory.ShapeFactory;
+import Object.ShapeObject;
+import model.ShapeModel;
 
 import java.awt.*;
 
 public class createCommand implements Command {
     private ShapeFactory factory;
+    private ShapeObject shape;
+    private ShapeModel model;
     private Point startPoint;
     private Color fillColor;
     private Color strokeColor;
 
-    public createCommand(ShapeFactory factory, Point startPoint,Color fillColor, Color strokeColor){
+    public createCommand(ShapeModel model, ShapeFactory factory, Point startPoint, Color fillColor, Color strokeColor){
+        this.model = model;
         this.factory = factory;
         this.startPoint = startPoint;
         this.strokeColor = strokeColor;
@@ -19,7 +24,8 @@ public class createCommand implements Command {
 
     @Override
     public void execute() {
-        factory.createShape(startPoint, fillColor, strokeColor);
+        shape = factory.createShape(startPoint, fillColor, strokeColor);
+        model.addShape(shape);
     }
 
     @Override
