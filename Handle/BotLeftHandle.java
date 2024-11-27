@@ -2,9 +2,12 @@ package Handle;
 
 import java.awt.*;
 import Object.ShapeObject;
+import State.SelectionTool;
+import State.SelectionToolState;
+import model.ShapeModel;
 
 public class BotLeftHandle extends ResizeHandle {
-    private static final int HANDLE_SIZE = 4;
+    private static final int HANDLE_SIZE = 10;
     public BotLeftHandle(ShapeObject shape) {
         super(shape);
     }
@@ -30,5 +33,15 @@ public class BotLeftHandle extends ResizeHandle {
         shape.setPosition(new Point(newX, newY));
         shape.setwidth(newWidth);
         shape.setheight(newHeight);
+    }
+
+    @Override
+    public boolean contains(Point point) {
+        return getBounds().contains(point);
+    }
+
+    @Override
+    public SelectionToolState setState(SelectionTool tool, ShapeModel model, Point point) {
+        return null;
     }
 }

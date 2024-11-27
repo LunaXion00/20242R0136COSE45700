@@ -31,7 +31,6 @@ public class LineTool implements Tool {
 
     @Override
     public void HandleMouseRelease(MouseEvent e, ShapeModel model, Point startPoint) {
-
     }
 
     @Override

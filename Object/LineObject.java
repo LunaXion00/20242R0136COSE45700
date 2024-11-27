@@ -28,16 +28,25 @@ public class LineObject extends ShapeObject{
     }
 
     @Override
-    protected List<ResizeHandle> getResizeHandleList() {
+    public List<ResizeHandle> getResizeHandleList() {
         return List.of(
                 new StartPointHandle(this), new EndPointHandle(this)
         );
     }
-
+    @Override
+    public void setPosition(Point startPoint) {
+        this.position = startPoint;
+        this.line.setLine(position, endPoint);
+    }
     @Override
     public void setEndPoint(Point endPoint) {
         this.endPoint = endPoint;
         this.line.setLine(position, endPoint);
+    }
+
+    @Override
+    public Point getEndPoint(){
+        return endPoint;
     }
     @Override
     public void move(int dx, int dy) {

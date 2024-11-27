@@ -60,7 +60,7 @@ public class TextBoxObject extends ShapeObject {
     }
 
     @Override
-    protected List<ResizeHandle> getResizeHandleList() {
+    public List<ResizeHandle> getResizeHandleList() {
         return List.of(
                 new TopLeftHandle(this), new TopMidHandle(this), new TopRightHandle(this),
                 new MidLeftHandle(this), new MidRightHandle(this),

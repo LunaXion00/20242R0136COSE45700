@@ -1,7 +1,10 @@
 package Object;
 
-import Handle.ResizeHandle;
+import Handle.*;
 import Interface.Selectable;
+import State.SelectionTool;
+import State.SelectionToolState;
+import model.ShapeModel;
 
 import java.awt.*;
 import java.util.List;
@@ -18,6 +21,14 @@ public abstract class ShapeObject implements Selectable {
         this.fillColor = fillColor;
         this.strokeColor = strokeColor;
     }
+
+    @Override
+    public SelectionToolState setState(SelectionTool tool, ShapeModel model, Point point) {
+        return null;
+    }
+
+    public abstract List<ResizeHandle> getResizeHandleList();
+
     public void setwidth(int width) {
         if(width == 0) this.width = 1;
         else this.width = width;

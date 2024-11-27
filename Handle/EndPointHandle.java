@@ -2,9 +2,12 @@ package Handle;
 
 import java.awt.*;
 import Object.ShapeObject;
+import State.SelectionTool;
+import State.SelectionToolState;
+import model.ShapeModel;
 
 public class EndPointHandle extends ResizeHandle {
-    private static final int HANDLE_SIZE = 4;
+    private static final int HANDLE_SIZE = 10;
     public EndPointHandle(ShapeObject shape) {
         super(shape);
     }
@@ -23,5 +26,15 @@ public class EndPointHandle extends ResizeHandle {
     @Override
     public void resize(Point startPoint, Point endPoint) {
         shape.setEndPoint(new Point(endPoint.x, endPoint.y));
+    }
+
+    @Override
+    public boolean contains(Point point) {
+        return getBounds().contains(point);
+    }
+
+    @Override
+    public SelectionToolState setState(SelectionTool tool, ShapeModel model, Point point) {
+        return null;
     }
 }

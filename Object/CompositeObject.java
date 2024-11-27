@@ -13,13 +13,21 @@ public class CompositeObject extends ShapeObject{
         super(position, width, height, fillColor, strokeColor);
     }
 
+    public List<ShapeObject> getComponents() {
+        return components;
+    }
+
     @Override
-    protected List<ResizeHandle> getResizeHandleList() {
-        return List.of(
-                new TopLeftHandle(this), new TopMidHandle(this), new TopRightHandle(this),
-                new MidLeftHandle(this), new MidRightHandle(this),
-                new BotLeftHandle(this), new BotMidHandle(this), new BotRightHandle(this)
-        );
+    public List<ResizeHandle> getResizeHandleList() {
+        List<ResizeHandle> handles = new ArrayList<>();
+        if (components.isEmpty()) {
+            return handles;
+        }
+
+        for (ShapeObject shape : components) {
+            handles.addAll(shape.getResizeHandleList());
+        }
+        return handles;
     }
 
     @Override
@@ -27,12 +35,21 @@ public class CompositeObject extends ShapeObject{
 
     }
 
-    public void add(ShapeObject shape){
-        components.add(shape);
+    public void add(ShapeObject shape) {
+        if (shape == this) {
+            throw new IllegalArgumentException("Cannot add self to components");
+        }
+        if (!components.contains(shape) && shape != null) {
+            components.add(shape); // 중복 방지
+            updateBounds();
+        }
     }
-
     public void remove(ShapeObject shape){
         components.remove(shape);
+    }
+
+    public void clear(){
+        components.clear();
     }
 
     @Override
@@ -51,5 +68,46 @@ public class CompositeObject extends ShapeObject{
         for(ShapeObject shape:components){
             shape.resize(dx, dy, dw, dh);
         }
+    }
+    @Override
+    public void move(int dx, int dy){
+        for (ShapeObject shape : components) {
+            shape.move(dx, dy);
+        }
+        setPosition(new Point(getPosition().x + dx, getPosition().y + dy));
+        updateBounds();
+    }
+    @Override
+    public boolean contains(Point point){
+        if (components.isEmpty()) return false;
+        // composite 안에 하나라도 hit test를 만족하면 true
+        for(ShapeObject shape:components){
+            if(shape.contains(point)) return true;
+        }
+        return false;
+    }
+    public void updateBounds() {
+        if (components.isEmpty()) {
+            setPosition(new Point(0, 0));
+            setwidth(0);
+            setheight(0);
+            return;
+        }
+
+        Rectangle unionBounds = null;
+
+        for (ShapeObject shape : components) {
+            Rectangle shapeBounds = shape.getBounds();
+            if (unionBounds == null) {
+                unionBounds = new Rectangle(shapeBounds);
+            } else {
+                unionBounds = unionBounds.union(shapeBounds);
+            }
+        }
+
+        // 그룹의 Bounds를 구성 요소들의 합으로 설정
+        setPosition(unionBounds.getLocation());
+        setwidth(unionBounds.width);
+        setheight(unionBounds.height);
     }
 }

@@ -1,19 +1,20 @@
 package State;
 
+import Handle.ResizeHandle;
+import Singleton.SelectionManagerSingleton;
+import model.SelectionManager;
 import model.ShapeModel;
-import Object.ShapeObject;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 
-public class MoveState implements SelectionToolState{
-    private SelectionTool tool;
-    private ShapeObject activeshape;
+public class ResizeState implements SelectionToolState{
+    private final SelectionTool tool;
+    private final ResizeHandle handle;
     private Point startPoint;
-
-    public MoveState(SelectionTool tool, ShapeObject activeshape, Point startPoint){
+    public ResizeState(SelectionTool tool, ResizeHandle handle, Point startPoint) {
         this.tool = tool;
-        this.activeshape = activeshape;
+        this.handle = handle;
         this.startPoint = startPoint;
     }
     @Override
@@ -23,11 +24,10 @@ public class MoveState implements SelectionToolState{
 
     @Override
     public void handleMouseDrag(MouseEvent e, ShapeModel model, Point movePoint) {
+        System.out.println("handle: " + handle.getClass().getSimpleName());
         Point currentPoint = e.getPoint();
-        int dx = currentPoint.x - startPoint.x;
-        int dy = currentPoint.y - startPoint.y;
-        activeshape.move(dx,dy);
-        startPoint = currentPoint;
+        handle.resize(startPoint, currentPoint);
+        this.startPoint = currentPoint;
     }
 
     @Override

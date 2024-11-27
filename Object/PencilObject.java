@@ -38,7 +38,7 @@ public class PencilObject extends ShapeObject{
     }
 
     @Override
-    protected List<ResizeHandle> getResizeHandleList() {
+    public List<ResizeHandle> getResizeHandleList() {
         return null;
     }
 
