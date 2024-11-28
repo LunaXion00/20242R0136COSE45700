@@ -49,6 +49,7 @@ public class VectorGraphicsEditor extends JFrame {
         propertiesPanel.addMouseListener(controller);
     }
 
+
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             new VectorGraphicsEditor().setVisible(true);
