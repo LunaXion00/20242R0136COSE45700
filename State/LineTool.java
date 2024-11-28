@@ -17,6 +17,7 @@ public class LineTool implements Tool {
         this.strokeColor = strokeColor;
         this.fillColor = null;
     }
+
     @Override
     public void HandleMousePress(MouseEvent e, ShapeModel model, Point startPoint) {
         currentShape = factory.createShape(startPoint, strokeColor, fillColor);
