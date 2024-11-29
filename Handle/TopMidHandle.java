@@ -26,14 +26,9 @@ public class TopMidHandle extends ResizeHandle {
 
     @Override
     public void resize(Point startPoint, Point endPoint) {
-        int newWidth = shape.getWidth();
-        int newHeight = Math.abs(shape.getHeight() + (startPoint.y - endPoint.y));
-        int newX = shape.getPosition().x;
-        int newY = Math.min(shape.getPosition().y + shape.getHeight(), endPoint.y);
-
-        shape.setPosition(new Point(newX, newY));
-        shape.setwidth(newWidth);
-        shape.setheight(newHeight);
+        int dy = endPoint.y-startPoint.y;
+        int dh = -(endPoint.y-startPoint.y);
+        shape.resize(0, dy, 0, dh);
     }
 
     @Override
