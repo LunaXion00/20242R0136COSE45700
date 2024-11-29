@@ -32,6 +32,7 @@ public class ResizeState implements SelectionToolState{
 
     @Override
     public void handleMouseRelease(MouseEvent e, ShapeModel model, Point startPoint) {
+        handle.endEdit();
         tool.setState(new IdleState(tool));
     }
 }

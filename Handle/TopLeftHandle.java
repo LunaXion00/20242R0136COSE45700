@@ -38,8 +38,16 @@ public class TopLeftHandle extends ResizeHandle{
         return getBounds().contains(point);
     }
 
+//    @Override
+//    public void endEdit() {
+//        shape.setPosition(new Point(shape.getBounds().x, shape.getBounds().y));
+//        shape.setwidth(shape.getBounds().width);
+//        shape.setheight(shape.getBounds().height);
+//    }
+
     @Override
     public SelectionToolState setState(SelectionTool tool, ShapeModel model, Point point) {
         return null;
     }
+
 }

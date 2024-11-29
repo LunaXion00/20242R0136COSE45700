@@ -34,7 +34,13 @@ public class EndPointHandle extends ResizeHandle {
     }
 
     @Override
+    public void endEdit(){
+
+    }
+
+    @Override
     public SelectionToolState setState(SelectionTool tool, ShapeModel model, Point point) {
         return null;
     }
+
 }
