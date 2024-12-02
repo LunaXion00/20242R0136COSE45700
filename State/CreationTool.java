@@ -5,6 +5,7 @@ import java.awt.event.MouseEvent;
 
 import Factory.ShapeFactory;
 import Object.ShapeObject;
+import Singleton.CommandManagerSingleton;
 import model.ShapeModel;
 import Command.*;
 
@@ -22,9 +23,7 @@ public class CreationTool implements Tool{
     @Override
     public void HandleMousePress(MouseEvent e, ShapeModel model, Point startPoint) {
         currentShape = factory.createShape(startPoint, fillColor, strokeColor);
-        model.addShape(currentShape);
-//        Command createCommand = new createCommand(model, factory, startPoint, fillColor, strokeColor);
-//        createCommand.execute();
+
     }
 
     @Override
@@ -39,6 +38,8 @@ public class CreationTool implements Tool{
         currentShape.setPosition(new Point(Math.min(e.getX(), startPoint.x), Math.min(e.getY(), startPoint.y)));
         currentShape.setwidth(Math.abs(e.getX() - startPoint.x));
         currentShape.setheight(Math.abs(e.getY() - startPoint.y));
+        Command createCommand = new CreateCommand(model, currentShape);
+        CommandManagerSingleton.getInstance().executeCommand(createCommand);
         currentShape = null;
     }
 

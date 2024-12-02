@@ -2,10 +2,7 @@ import Controller.VectorGraphicController;
 import Factory.*;
 import Singleton.ShapeModelSingleton;
 import State.*;
-import View.ButtonPanel;
-import View.ColorPanel;
-import View.DrawPanel;
-import View.PropertiesPanel;
+import View.*;
 import model.ShapeModel;
 
 import javax.swing.*;
@@ -17,6 +14,7 @@ public class VectorGraphicsEditor extends JFrame {
     private VectorGraphicController controller;
     private ColorPanel colorPanel;
     private PropertiesPanel propertiesPanel;
+    private ActionPanel actionPanel;
 
     public VectorGraphicsEditor() {
         setTitle("Vector Graphics Editor");
@@ -31,6 +29,7 @@ public class VectorGraphicsEditor extends JFrame {
         drawPanel = new DrawPanel(model, controller);
         colorPanel = new ColorPanel(controller);
         propertiesPanel = new PropertiesPanel(model, controller);
+        actionPanel = new ActionPanel();
         model.addObserver(propertiesPanel);
         // UI 구성 - 도구 버튼들
         ButtonPanel toolsPanel = new ButtonPanel(controller);
@@ -42,11 +41,14 @@ public class VectorGraphicsEditor extends JFrame {
         add(drawPanel, BorderLayout.CENTER);
         add(colorPanel, BorderLayout.SOUTH);
         add(propertiesPanel, BorderLayout.EAST);
+        add(actionPanel, BorderLayout.NORTH);
+
         // MouseListener 설정
         drawPanel.addMouseListener(controller);
         drawPanel.addMouseMotionListener(controller);
         colorPanel.addMouseListener(controller);
         propertiesPanel.addMouseListener(controller);
+        actionPanel.addMouseListener(controller);
     }
 
 

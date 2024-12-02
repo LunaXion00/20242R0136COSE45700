@@ -110,4 +110,5 @@ public class CompositeObject extends ShapeObject{
         setwidth(unionBounds.width);
         setheight(unionBounds.height);
     }
+
 }

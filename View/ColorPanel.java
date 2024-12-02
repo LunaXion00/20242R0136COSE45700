@@ -5,6 +5,7 @@ import Controller.VectorGraphicController;
 import javax.swing.*;
 import java.awt.*;
 
+// ColorPanel의 경우, 선택된 도형의 색 변경 또는 객체 생성에 사용되는 색을 변경한다.
 public class ColorPanel extends JPanel {
     private Color[] colors = {null, Color.RED, Color.BLUE, Color.GREEN, Color.YELLOW, Color.ORANGE, Color.PINK, Color.WHITE, Color.BLACK};
     private VectorGraphicController controller;

@@ -26,25 +26,23 @@ public class ShapeModel {
         return shapes;
     }
 
-    public void selectShape(ShapeObject shape) {
-        selectedShapes.add(shape);
-        notifyObservers();
-    }
-
     public List<ShapeObject> getSelectedShapes() {
         return selectedShapes;
     }
+
     public ShapeObject getSelectedShape() {
         if (selectedShapes.size() == 1) {
             return selectedShapes.getFirst();
         }
         return null;
     }
+
     public void moveToBottom(ShapeObject shape) {
         shapes.remove(shape);
         shapes.add(0, shape);
         notifyObservers();
     }
+
     public void moveToTop(ShapeObject shape) {
         shapes.remove(shape);
         shapes.add(shape); // 리스트의 마지막으로 이동

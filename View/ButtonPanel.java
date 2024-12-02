@@ -8,6 +8,7 @@ import State.*;
 import javax.swing.*;
 import java.awt.*;
 
+// ButtonPanel의 경우 도구 변경에 필요한 각 기능들을 연결한다.
 public class ButtonPanel extends JPanel {
     public ButtonPanel(VectorGraphicController controller) {
         setLayout(new GridLayout(0, 1));

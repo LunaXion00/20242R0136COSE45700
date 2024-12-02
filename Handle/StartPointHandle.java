@@ -33,6 +33,7 @@ public class StartPointHandle extends ResizeHandle {
     public void endEdit(){
 
     }
+
     @Override
     public boolean contains(Point point) {
         return getBounds().contains(point);

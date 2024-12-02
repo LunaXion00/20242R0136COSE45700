@@ -1,6 +1,6 @@
 package Object;
 
-import Handle.ResizeHandle;
+import Handle.*;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -39,7 +39,11 @@ public class PencilObject extends ShapeObject{
 
     @Override
     public List<ResizeHandle> getResizeHandleList() {
-        return null;
+        return List.of(
+                new TopLeftHandle(this), new TopMidHandle(this), new TopRightHandle(this),
+                new MidLeftHandle(this), new MidRightHandle(this),
+                new BotLeftHandle(this), new BotMidHandle(this), new BotRightHandle(this)
+        );
     }
 
     @Override

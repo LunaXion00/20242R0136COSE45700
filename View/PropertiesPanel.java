@@ -12,6 +12,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+// 속성창은 선택된 객체의 속성을 표시 및 수정을 하는 패널을 제공.
 public class PropertiesPanel  extends JPanel implements Observer {
     private VectorGraphicController controller;
     private ShapeModel model;

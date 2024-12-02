@@ -1,7 +1,10 @@
 package State;
 
+import Command.Command;
 import Factory.ShapeFactory;
+import Singleton.CommandManagerSingleton;
 import model.ShapeModel;
+import Command.CreateCommand;
 import Object.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -21,17 +24,18 @@ public class LineTool implements Tool {
     @Override
     public void HandleMousePress(MouseEvent e, ShapeModel model, Point startPoint) {
         currentShape = factory.createShape(startPoint, strokeColor, fillColor);
-        model.addShape(currentShape);
     }
 
     @Override
     public void HandleMouseDrag(MouseEvent e, ShapeModel model, Point startPoint) {
-        LineObject line = (LineObject) model.getShapes().get(model.getShapes().size() - 1);
-        line.setEndPoint(e.getPoint());
+        currentShape.setEndPoint(e.getPoint());
     }
 
     @Override
     public void HandleMouseRelease(MouseEvent e, ShapeModel model, Point startPoint) {
+        Command createCommand = new CreateCommand(model, currentShape);
+        CommandManagerSingleton.getInstance().executeCommand(createCommand);
+        currentShape = null;
     }
 
     @Override
