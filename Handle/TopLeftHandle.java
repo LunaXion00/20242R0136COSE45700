@@ -7,7 +7,7 @@ import State.SelectionToolState;
 import model.ShapeModel;
 
 public class TopLeftHandle extends ResizeHandle{
-    private static final int HANDLE_SIZE = 10;
+    private static final int HANDLE_SIZE = 6;
     public TopLeftHandle(ShapeObject shape) {
         super(shape);
     }
@@ -22,7 +22,6 @@ public class TopLeftHandle extends ResizeHandle{
                 HANDLE_SIZE
         );
     }
-
     @Override
     public void resize(Point startPoint, Point endPoint) {
         int dx = endPoint.x-startPoint.x;
@@ -32,16 +31,8 @@ public class TopLeftHandle extends ResizeHandle{
         shape.resize(dx, dy, dw, dh);
 
     }
-
     @Override
     public boolean contains(Point point) {
         return getBounds().contains(point);
     }
-
-
-    @Override
-    public SelectionToolState setState(SelectionTool tool, ShapeModel model, Point point) {
-        return null;
-    }
-
 }

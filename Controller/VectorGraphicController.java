@@ -1,5 +1,8 @@
 package Controller;
 
+import Command.DeleteCommand;
+import Singleton.CommandManagerSingleton;
+import Singleton.SelectionManagerSingleton;
 import State.SelectionTool;
 import State.Tool;
 import model.ShapeModel;
@@ -17,8 +20,8 @@ public class VectorGraphicController extends MouseAdapter{
     private Tool currentTool;
     private Point startPoint;
     private Point currentPoint;
-    private Rectangle selectionRect;
     private Component currentComponent;
+    private ShapeObject selectedShape;
 
     public VectorGraphicController(ShapeModel model) {
        this.model = model;
@@ -36,18 +39,11 @@ public class VectorGraphicController extends MouseAdapter{
         if (currentTool != null) {
             currentTool.setCurrentColor(color);
         }
-        if (model.getSelectedShapes() != null) {
-            for (ShapeObject shape: model.getSelectedShapes()) {
-                shape.setFillColor(color);
-                model.notifyObservers();
-            }
+        if (SelectionManagerSingleton.getInstance().getSelectedObject() != null) {
+            SelectionManagerSingleton.getInstance().getSelectedObject().setFillColor(color);
+            model.notifyObservers();
         }
     }
-
-    public void setSelectionRect(Rectangle rect) {
-        this.selectionRect = rect;
-    }
-
     public void mousePressed(MouseEvent e) {
         currentComponent = e.getComponent();
         if (currentTool != null) {
@@ -63,10 +59,6 @@ public class VectorGraphicController extends MouseAdapter{
         if (currentTool != null) {
             currentPoint = e.getPoint();
             currentTool.HandleMouseDrag(e, model, startPoint);
-            if (currentTool instanceof SelectionTool) {
-                SelectionTool selectionTool = (SelectionTool) currentTool;
-                setSelectionRect(selectionTool.getSelectionRect());
-            }
             model.notifyObservers();
         }
     }
@@ -89,56 +81,16 @@ public class VectorGraphicController extends MouseAdapter{
         return startPoint;
     }
 
-    public ShapeObject getSelectedShape() {
-        return model.getSelectedShape();
-    }
-
     private void addKeyListener() {
         KeyboardFocusManager.getCurrentKeyboardFocusManager().addKeyEventDispatcher(new KeyEventDispatcher() {
             @Override
             public boolean dispatchKeyEvent(KeyEvent e) {
                 if (e.getID() == KeyEvent.KEY_PRESSED && e.getKeyCode() == KeyEvent.VK_DELETE) {
-                    deleteSelectedShape();
+                    DeleteCommand deleteCommand = new DeleteCommand();
+                    CommandManagerSingleton.getInstance().executeCommand(deleteCommand);
                 }
                 return false;
             }
         });
-    }
-
-    private void deleteSelectedShape() {
-        List<ShapeObject> selectedShapes = model.getSelectedShapes();
-        if (selectedShapes != null) {
-            for(ShapeObject selectedShape: selectedShapes) {
-                model.deleteShape(selectedShape);
-                model.notifyObservers();
-            }
-        }
-    }
-    public void bringToFront() {
-        ShapeObject selectedShape = getSelectedShape();
-        if (selectedShape != null) {
-            model.moveToTop(selectedShape);
-        }
-    }
-
-    public void bringForward() {
-        ShapeObject selectedShape = getSelectedShape();
-        if (selectedShape != null) {
-            model.moveUp(selectedShape);
-        }
-    }
-
-    public void sendBackward() {
-        ShapeObject selectedShape = getSelectedShape();
-        if (selectedShape != null) {
-            model.moveDown(selectedShape);
-        }
-    }
-
-    public void sendToBack() {
-        ShapeObject selectedShape = getSelectedShape();
-        if (selectedShape != null) {
-            model.moveToBottom(selectedShape);
-        }
     }
 }

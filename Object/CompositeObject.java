@@ -86,6 +86,10 @@ public class CompositeObject extends ShapeObject{
         }
         return false;
     }
+    @Override
+    public void setFillColor(Color fillColor) {
+        for(ShapeObject shape: components) shape.setFillColor(fillColor);
+    }
     public void updateBounds() {
         if (components.isEmpty()) {
             setPosition(new Point(0, 0));

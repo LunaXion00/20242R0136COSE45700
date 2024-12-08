@@ -49,4 +49,9 @@ public class PencilTool implements Tool {
 
     }
 
+    @Override
+    public ShapeObject getDrawingObject() {
+        return currentShape;
+    }
+
 }

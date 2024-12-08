@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 public class SelectionBoxState implements SelectionToolState{
     private final SelectionTool tool;
     private final SelectionManager selectionManager = SelectionManagerSingleton.getInstance();
-    private final Rectangle selectionBox;
+    private Rectangle selectionBox;
 
     public SelectionBoxState(SelectionTool tool, Point startPoint) {
         this.tool = tool;
@@ -31,6 +31,7 @@ public class SelectionBoxState implements SelectionToolState{
                 Math.abs(currentPoint.x - startPoint.x),
                 Math.abs(currentPoint.y - startPoint.y)
         );
+        selectionManager.setSelectionBox(selectionBox);
     }
 
     @Override

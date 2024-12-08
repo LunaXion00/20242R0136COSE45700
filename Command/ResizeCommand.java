@@ -17,7 +17,6 @@ public class ResizeCommand implements Command{
 
     @Override
     public void execute() {
-        System.out.println("ResizeCommand Executed");
         handle.endEdit();
     }
 
@@ -29,7 +28,7 @@ public class ResizeCommand implements Command{
 
     @Override
     public void redo() {
-        System.out.println("ResizeCommand Redo");
+        System.out.println("ResizeCommand Redo: "+handle.getClass().getSimpleName() + " "+initialPoint+" "+ finalPoint);
         handle.resize(initialPoint,finalPoint);
         execute();
     }

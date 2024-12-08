@@ -5,6 +5,7 @@ import Handle.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Path2D;
+import java.awt.geom.PathIterator;
 import java.util.List;
 
 public class PencilObject extends ShapeObject{

@@ -7,7 +7,7 @@ import State.SelectionToolState;
 import model.ShapeModel;
 
 public class EndPointHandle extends ResizeHandle {
-    private static final int HANDLE_SIZE = 10;
+    private static final int HANDLE_SIZE = 6;
     public EndPointHandle(ShapeObject shape) {
         super(shape);
     }
@@ -36,11 +36,6 @@ public class EndPointHandle extends ResizeHandle {
     @Override
     public void endEdit(){
 
-    }
-
-    @Override
-    public SelectionToolState setState(SelectionTool tool, ShapeModel model, Point point) {
-        return null;
     }
 
 }

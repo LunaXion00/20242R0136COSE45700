@@ -7,7 +7,7 @@ import State.SelectionToolState;
 import model.ShapeModel;
 
 public class TopMidHandle extends ResizeHandle {
-    private static final int HANDLE_SIZE = 10;
+    private static final int HANDLE_SIZE = 6;
     public TopMidHandle(ShapeObject shape) {
         super(shape);
     }
@@ -34,10 +34,5 @@ public class TopMidHandle extends ResizeHandle {
     @Override
     public boolean contains(Point point) {
         return getBounds().contains(point);
-    }
-
-    @Override
-    public SelectionToolState setState(SelectionTool tool, ShapeModel model, Point point) {
-        return null;
     }
 }

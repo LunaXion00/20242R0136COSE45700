@@ -9,7 +9,7 @@ import model.ShapeModel;
 import java.awt.*;
 import java.util.List;
 
-public abstract class ShapeObject implements Selectable {
+public abstract class ShapeObject {
     protected Point position;
     protected int width, height;
     protected Color fillColor, strokeColor;
@@ -20,11 +20,6 @@ public abstract class ShapeObject implements Selectable {
         this.height = height;
         this.fillColor = fillColor;
         this.strokeColor = strokeColor;
-    }
-
-    @Override
-    public SelectionToolState setState(SelectionTool tool, ShapeModel model, Point point) {
-        return null;
     }
 
     public abstract List<ResizeHandle> getResizeHandleList();
@@ -65,6 +60,8 @@ public abstract class ShapeObject implements Selectable {
     public int getHeight() {
         return Math.abs(height);
     }
+    public Color getFillColor(){return this.fillColor;}
+    public Color getStrokeColor(){return this.strokeColor;}
     public Point getEndPoint() {
         return new Point(position.x + width, position.y + height);
     }

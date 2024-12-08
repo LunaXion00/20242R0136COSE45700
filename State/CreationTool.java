@@ -23,7 +23,6 @@ public class CreationTool implements Tool{
     @Override
     public void HandleMousePress(MouseEvent e, ShapeModel model, Point startPoint) {
         currentShape = factory.createShape(startPoint, fillColor, strokeColor);
-
     }
 
     @Override
@@ -51,5 +50,10 @@ public class CreationTool implements Tool{
     @Override
     public void setCurrentColor(Color color) {
         this.fillColor = color;
+    }
+
+    @Override
+    public ShapeObject getDrawingObject() {
+        return currentShape;
     }
 }

@@ -3,6 +3,7 @@ package State;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import model.ShapeModel;
+import Object.ShapeObject;
 
 public interface Tool {
     void HandleMousePress(MouseEvent e, ShapeModel model, Point startPoint);
@@ -10,4 +11,5 @@ public interface Tool {
     void HandleMouseRelease(MouseEvent e, ShapeModel model, Point startPoint);
     void onDeactivate(Component component);
     void setCurrentColor(Color color);
+    ShapeObject getDrawingObject();
 }

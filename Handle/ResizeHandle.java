@@ -5,7 +5,7 @@ import java.awt.*;
 import Interface.Selectable;
 import Object.ShapeObject;
 
-public abstract class ResizeHandle implements Selectable {
+public abstract class ResizeHandle{
     protected ShapeObject shape;
     public ResizeHandle(ShapeObject shape){
         this.shape = shape;

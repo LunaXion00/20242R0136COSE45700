@@ -31,13 +31,11 @@ public class SelectionTool implements Tool{
     @Override
     public void HandleMouseDrag(MouseEvent e, ShapeModel model, Point startPoint) {
         currentState.handleMouseDrag(e, model, startPoint);
-        model.notifyObservers();
     }
 
     @Override
     public void HandleMouseRelease(MouseEvent e, ShapeModel model, Point startPoint) {
         currentState.handleMouseRelease(e, model, startPoint);
-        model.notifyObservers();  // 최종 업데이트
     }
 
     @Override
@@ -51,9 +49,10 @@ public class SelectionTool implements Tool{
 
     }
 
-    public Rectangle getSelectionRect() {
-        if (currentState instanceof SelectionBoxState) return ((SelectionBoxState) currentState).getSelectionBox();
+    @Override
+    public ShapeObject getDrawingObject() {
         return null;
     }
+
     public SelectionToolState getState(){return currentState;}
 }

@@ -47,4 +47,9 @@ public class LineTool implements Tool {
     public void setCurrentColor(Color color) {
 
     }
+
+    @Override
+    public ShapeObject getDrawingObject() {
+        return currentShape;
+    }
 }

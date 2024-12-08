@@ -17,18 +17,17 @@ public class MoveCommand implements Command{
 
     @Override
     public void execute() {
-        System.out.println("MoveCommand Execute: "+ finalPosition);
         shape.setPosition(finalPosition);
     }
 
     @Override
     public void undo() {
-        System.out.println("MoveCommand undo: "+ initialPosition);
         shape.move(initialPosition.x-finalPosition.x, initialPosition.y - finalPosition.y);
     }
 
     @Override
     public void redo() {
+        shape.move(finalPosition.x-initialPosition.x, finalPosition.y-initialPosition.y);
         execute();
     }
 }

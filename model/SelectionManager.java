@@ -1,14 +1,24 @@
 package model;
 import Object.*;
+import Singleton.SelectionManagerSingleton;
 import Singleton.ShapeModelSingleton;
+import Observer.Observer;
 
 import java.awt.*;
 
-public class SelectionManager {
+public class SelectionManager implements Observer{
     private CompositeObject selectedGroup = new CompositeObject(new Point(0, 0), 0, 0, null, null);
-
-    public ShapeObject getSelectedObject(){
+    private Rectangle selectionBox;
+    public SelectionManager(){
+        ShapeModelSingleton.getInstance().addObserver(this);
+    }
+    public CompositeObject getSelectedObject(){
         return selectedGroup;
+    }
+
+    public ShapeObject getSingleSelectedObject(){
+        if(selectedGroup.getComponents().size() == 1) return selectedGroup.getComponents().get(0);
+        return null;
     }
 
     public ShapeObject getShapesAt(Point point){
@@ -16,7 +26,6 @@ public class SelectionManager {
         if (selectedGroup.contains(point)) {
             return selectedGroup;
         }
-
         // 새로운 객체 선택
         selectedGroup.clear();
         ShapeObject clickedShape = findShapeAtPosition(point);
@@ -27,13 +36,13 @@ public class SelectionManager {
 
         return null; // 빈 공간 클릭
     }
-
     public void updateSelectedObject(ShapeModel model, Rectangle selectionBox){
         for (ShapeObject shape : model.getShapes()) {
             if (selectionBox.intersects(shape.getBounds())) {  // 선택 영역에 걸치는 도형들
                 selectedGroup.add(shape);
             }
         }
+        this.selectionBox = null;
     }
     private ShapeObject findShapeAtPosition(Point point) {
         ShapeModel model = ShapeModelSingleton.getInstance();
@@ -44,8 +53,20 @@ public class SelectionManager {
         }
         return null;
     }
+    public Rectangle getSelectionBox() {
+        return selectionBox;
+    }
+
+    public void setSelectionBox(Rectangle selectionBox) {
+        this.selectionBox = selectionBox;
+    }
 
     public void clearManager(){
         selectedGroup.clear();
+    }
+
+    @Override
+    public void update() {
+        selectedGroup.updateBounds();
     }
 }

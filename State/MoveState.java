@@ -40,8 +40,10 @@ public class MoveState implements SelectionToolState{
     @Override
     public void handleMouseRelease(MouseEvent e, ShapeModel model, Point startPoint) {
         Point finalPosition = activeshape.getPosition();
-        MoveCommand moveCommand = new MoveCommand(activeshape, initialPoint, finalPosition);
-        manager.executeCommand(moveCommand);
+        if(!initialPoint.equals(finalPosition)) {
+            MoveCommand moveCommand = new MoveCommand(activeshape, initialPoint, finalPosition);
+            manager.executeCommand(moveCommand);
+        }
         tool.setState(new IdleState(tool));
     }
 }

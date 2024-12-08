@@ -92,4 +92,9 @@ public class TextTool implements Tool, KeyListener {
     public void setCurrentColor(Color color) {
         this.textColor = color;
     }
+
+    @Override
+    public ShapeObject getDrawingObject() {
+        return currentTextBox;
+    }
 }
