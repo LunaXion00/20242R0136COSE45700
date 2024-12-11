@@ -7,7 +7,7 @@ import State.SelectionToolState;
 import model.ShapeModel;
 
 public class MidRightHandle extends ResizeHandle{
-    private static final int HANDLE_SIZE = 6;
+    private static final int HANDLE_SIZE = 10;
     public MidRightHandle(ShapeObject shape) {
         super(shape);
     }

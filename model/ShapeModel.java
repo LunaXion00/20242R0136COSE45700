@@ -9,7 +9,6 @@ import Object.CompositeObject;
 
 public class ShapeModel {
     private List<ShapeObject> shapes = new ArrayList<>();
-    private List<ShapeObject> selectedShapes = new ArrayList<>();
     private List<Observer> observers = new ArrayList<>();  // Observer 패턴
 
 
@@ -28,9 +27,6 @@ public class ShapeModel {
         return shapes;
     }
 
-    public List<ShapeObject> getSelectedShapes() {
-        return selectedShapes;
-    }
             // Observer 패턴: 변경 알림
     public void addObserver(Observer observer) {
         observers.add(observer);

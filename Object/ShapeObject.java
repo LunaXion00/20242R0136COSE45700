@@ -1,10 +1,6 @@
 package Object;
 
 import Handle.*;
-import Interface.Selectable;
-import State.SelectionTool;
-import State.SelectionToolState;
-import model.ShapeModel;
 
 import java.awt.*;
 import java.util.List;
@@ -73,6 +69,4 @@ public abstract class ShapeObject {
         return getBounds().contains(point);
     }
     public abstract void draw(Graphics2D g2d);
-
-
 }

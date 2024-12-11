@@ -42,7 +42,7 @@ public class OrderPanel extends JPanel {
         ShapeObject selectedShape = selectionManager.getSingleSelectedObject();
         if (selectedShape != null) {
             Command command = new ZOrderCommand(selectedShape, destination);
-            CommandManagerSingleton.getInstance().executeCommand(command);
+            commandManager.executeCommand(command);
         }
     }
 

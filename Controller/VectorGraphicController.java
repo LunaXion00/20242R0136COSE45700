@@ -19,9 +19,7 @@ public class VectorGraphicController extends MouseAdapter{
     private ShapeModel model;
     private Tool currentTool;
     private Point startPoint;
-    private Point currentPoint;
     private Component currentComponent;
-    private ShapeObject selectedShape;
 
     public VectorGraphicController(ShapeModel model) {
        this.model = model;
@@ -48,7 +46,6 @@ public class VectorGraphicController extends MouseAdapter{
         currentComponent = e.getComponent();
         if (currentTool != null) {
             startPoint = e.getPoint();
-            currentPoint = startPoint;
             currentTool.HandleMousePress(e, model, startPoint);
             model.notifyObservers();
         }
@@ -57,7 +54,6 @@ public class VectorGraphicController extends MouseAdapter{
     public void mouseDragged(MouseEvent e) {
         currentComponent = e.getComponent();
         if (currentTool != null) {
-            currentPoint = e.getPoint();
             currentTool.HandleMouseDrag(e, model, startPoint);
             model.notifyObservers();
         }
@@ -71,9 +67,6 @@ public class VectorGraphicController extends MouseAdapter{
         }
     }
 
-    public Point getCurrentPoint() {
-        return currentPoint;
-    }
     public Tool getCurrentTool() {
         return currentTool;
     }

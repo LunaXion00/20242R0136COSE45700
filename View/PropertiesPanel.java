@@ -56,7 +56,7 @@ public class PropertiesPanel extends JPanel implements Observer {
             public void keyPressed(KeyEvent evt) {
                 if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
                     textField.setEditable(false); // 편집 종료
-                    updateInfo(labelText, textField);
+                    modifyInfo(labelText, textField);
                 }
             }
         });
@@ -83,7 +83,7 @@ public class PropertiesPanel extends JPanel implements Observer {
         }
     }
 
-    private void updateInfo(String property, JTextField textField) {
+    private void modifyInfo(String property, JTextField textField) {
         ShapeObject selectedShape = selectionManager.getSingleSelectedObject();
         if (selectedShape == null) return;
         try {

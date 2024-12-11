@@ -2,7 +2,6 @@ package Handle;
 
 import java.awt.*;
 
-import Interface.Selectable;
 import Object.ShapeObject;
 
 public abstract class ResizeHandle{

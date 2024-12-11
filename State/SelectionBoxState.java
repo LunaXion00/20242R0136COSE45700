@@ -39,7 +39,4 @@ public class SelectionBoxState implements SelectionToolState{
         selectionManager.updateSelectedObject(model, selectionBox);
         tool.setState(new IdleState(tool));
     }
-    public Rectangle getSelectionBox(){
-        return selectionBox;
-    }
 }
